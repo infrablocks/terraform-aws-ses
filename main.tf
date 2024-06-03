@@ -89,7 +89,7 @@ resource "aws_iam_group_policy" "ses_group_policy" {
 
 module "ses_user" {
   source  = "infrablocks/user/aws"
-  version = "1.1.0-rc.7"
+  version = "1.1.0-rc.9"
 
   user_name = "ses_email_sender"
   enforce_mfa = "no"
