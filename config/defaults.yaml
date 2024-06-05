@@ -5,3 +5,5 @@ component: 'test'
 deployment_identifier: "%{hiera('seed')}"
 
 domain: "infrablocks.click"
+
+public_zone_id: 'Z08829023L5IPIQBJOX63'

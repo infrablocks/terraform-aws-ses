@@ -2,20 +2,26 @@
 
 require 'spec_helper'
 
-describe 'SES' do
+describe 'domain identity' do
+  let(:domain) do
+    var(role: :root, name: 'domain')
+  end
+
   describe 'by default' do
     before(:context) do
-      @plan = plan(role: :root) do |vars|
-          vars.verify_domain = false
-          vars.create_spf_record = false
-          vars.verify_dkim = false
-      end
+      @plan = plan(role: :root)
     end
 
-    it 'creates an domain identity' do
+    it 'creates a domain identity' do
       expect(@plan)
         .to(include_resource_creation(type: 'aws_ses_domain_identity')
               .once)
+    end
+
+    it 'includes the domain' do
+      expect(@plan)
+        .to(include_resource_creation(type: 'aws_ses_domain_identity')
+              .with_attribute_value(:domain, domain))
     end
   end
 end

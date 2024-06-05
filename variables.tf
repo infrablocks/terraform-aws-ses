@@ -13,18 +13,21 @@ variable "verify_domain" {
   type    = bool
   description = "If true the module will create Route53 DNS records used for domain verification."
   default = false
+  nullable = false
 }
 
 variable "verify_dkim" {
   type    = bool
   description = "If true the module will create Route53 DNS records used for DKIM verification."
   default = false
+  nullable = false
 }
 
 variable "create_spf_record" {
   type    = bool
   description = "If true the module will create an SPF record for `domain`."
   default = false
+  nullable = false
 }
 
 variable "mail_from_domain" {
