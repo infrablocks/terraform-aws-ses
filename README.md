@@ -5,8 +5,7 @@ Terraform AWS SES
 [![Build Pipeline](https://img.shields.io/circleci/build/github/infrablocks/terraform-aws-ses/main?label=build-pipeline)](https://app.circleci.com/pipelines/github/infrablocks/terraform-aws-ses?filter=all)
 [![Maintainer](https://img.shields.io/badge/maintainer-go--atomic.io-red)](https://go-atomic.io)
 
-A Terraform module and associated submodules for provisioning an AWS SES
-instance.
+A Terraform module for provisioning an AWS SES instance.
 
 Development
 -----------
