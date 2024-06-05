@@ -34,7 +34,7 @@ resource "aws_route53_record" "aws_ses_spf_record" {
   count = var.create_spf_record ? 1 : 0
 
   zone_id = var.zone_id
-  name    = local.mail_from_domain_enabled ? aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain : aws_ses_domain_identity.ses_domain.domain
+  name    = local.mail_from_domain_enabled ? join("", aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain) : aws_ses_domain_identity.ses_domain.domain
   type    = "TXT"
   ttl     = "3600"
   records = ["v=spf1 include:amazonses.com -all"]
@@ -55,8 +55,8 @@ resource "aws_route53_record" "custom_mail_from_mx" {
   count = local.mail_from_domain_enabled ? 1 : 0
 
   zone_id = var.zone_id
-  name    = aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain
+  name    = join("", aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain)
   type    = "MX"
   ttl     = "600"
-  records = ["10 feedback-smtp.${data.aws_region.current[*].name}.amazonses.com"]
+  records = ["10 feedback-smtp.${join("", data.aws_region.current[*].name)}.amazonses.com"]
 }
