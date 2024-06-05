@@ -4,7 +4,8 @@ state_file: "%{cwd}/state/full.tfstate"
 vars:
   region: "%{hiera('region')}"
 
-  component: "%{hiera('component')}"
-  deployment_identifier: "%{hiera('deployment_identifier')}"
-
   domain: "%{hiera('domain')}"
+
+  zone_id: "%{hiera('public_zone_id')}"
+
+  mail_from_domain: "%{hiera('mail_from_domain')}"

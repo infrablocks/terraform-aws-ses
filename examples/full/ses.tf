@@ -5,13 +5,13 @@ module "ses" {
 
   zone_id = var.zone_id
 
-  verify_domain = var.verify_domain
+  verify_domain = true
 
-  verify_dkim = var.verify_dkim
+  verify_dkim = true
 
-  create_spf_record = var.create_spf_record
+  create_spf_record = true
 
-  use_custom_mail_from_domain = var.use_custom_mail_from_domain
+  use_custom_mail_from_domain = true
 
   mail_from_domain = var.mail_from_domain
 

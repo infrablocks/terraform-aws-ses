@@ -27,7 +27,6 @@ describe 'custom mail from mx' do
     before(:context) do
       @plan = plan(role: :root) do |vars|
         vars.use_custom_mail_from_domain = true
-        vars.mail_from_domain = 'custom'
       end
     end
 
