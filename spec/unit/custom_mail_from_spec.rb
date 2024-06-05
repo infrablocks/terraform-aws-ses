@@ -38,5 +38,12 @@ describe 'domain mail from' do
         .to(include_resource_creation(type: 'aws_ses_domain_mail_from')
               .with_attribute_value(:behavior_on_mx_failure, 'UseDefaultValue'))
     end
+
+    it 'outputs the mail from domain' do
+      expect(@plan)
+        .to(include_output_creation(
+              name: 'mail_from_domain'
+            ))
+    end
   end
 end

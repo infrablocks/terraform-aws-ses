@@ -56,5 +56,12 @@ describe 'spf record' do
               .with_attribute_value(:records,
                                     ['v=spf1 include:amazonses.com -all']))
     end
+
+    it 'outputs the spf record' do
+      expect(@plan)
+        .to(include_output_creation(
+              name: 'spf_record'
+            ))
+    end
   end
 end

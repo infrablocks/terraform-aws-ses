@@ -51,5 +51,12 @@ describe 'dkim record' do
               .with_attribute_value(:ttl, 1800)
               .thrice)
     end
+
+    it 'outputs the dkim tokens' do
+      expect(@plan)
+        .to(include_output_creation(
+              name: 'ses_dkim_tokens'
+            ))
+    end
   end
 end

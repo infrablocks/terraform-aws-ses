@@ -23,5 +23,17 @@ describe 'domain identity' do
         .to(include_resource_creation(type: 'aws_ses_domain_identity')
               .with_attribute_value(:domain, domain))
     end
+
+    it 'outputs the domain identity ARN' do
+      expect(@plan)
+        .to(include_output_creation(name: 'ses_domain_identity_arn'))
+    end
+
+    it 'outputs the domain identity verification token' do
+      expect(@plan)
+        .to(include_output_creation(
+              name: 'ses_domain_identity_verification_token'
+            ))
+    end
   end
 end
