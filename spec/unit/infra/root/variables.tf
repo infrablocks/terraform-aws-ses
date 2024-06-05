@@ -23,6 +23,11 @@ variable "create_spf_record" {
   default = null
 }
 
+variable "use_custom_mail_from_domain" {
+  type    = bool
+  default = null
+}
+
 variable "mail_from_domain" {
   default = null
 }

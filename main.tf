@@ -1,7 +1,3 @@
-locals {
-  mail_from_domain_enabled = var.mail_from_domain != null
-}
-
 resource "aws_ses_domain_identity" "ses_domain" {
   domain = var.domain
 }
@@ -34,25 +30,25 @@ resource "aws_route53_record" "aws_ses_spf_record" {
   count = var.create_spf_record ? 1 : 0
 
   zone_id = var.zone_id
-  name    = local.mail_from_domain_enabled ? join("", aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain) : aws_ses_domain_identity.ses_domain.domain
+  name    = var.use_custom_mail_from_domain ? join("", aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain) : aws_ses_domain_identity.ses_domain.domain
   type    = "TXT"
   ttl     = "3600"
   records = ["v=spf1 include:amazonses.com -all"]
 }
 
 resource "aws_ses_domain_mail_from" "custom_mail_from" {
-  count                  = local.mail_from_domain_enabled ? 1 : 0
+  count                  = var.use_custom_mail_from_domain ? 1 : 0
   domain                 = aws_ses_domain_identity.ses_domain.domain
   mail_from_domain       = "${var.mail_from_domain}.${aws_ses_domain_identity.ses_domain.domain}"
   behavior_on_mx_failure = "UseDefaultValue"
 }
 
 data "aws_region" "current" {
-  count = local.mail_from_domain_enabled ? 1 : 0
+  count = var.use_custom_mail_from_domain ? 1 : 0
 }
 
 resource "aws_route53_record" "custom_mail_from_mx" {
-  count = local.mail_from_domain_enabled ? 1 : 0
+  count = var.use_custom_mail_from_domain ? 1 : 0
 
   zone_id = var.zone_id
   name    = join("", aws_ses_domain_mail_from.custom_mail_from[*].mail_from_domain)

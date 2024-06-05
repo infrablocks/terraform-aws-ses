@@ -19,6 +19,8 @@ module "ses" {
 
   create_spf_record = var.create_spf_record
 
+  use_custom_mail_from_domain = var.use_custom_mail_from_domain
+
   mail_from_domain = var.mail_from_domain
 
   providers = {
