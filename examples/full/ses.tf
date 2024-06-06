@@ -1,5 +1,5 @@
 module "ses" {
-  source = "../../../.."
+  source = "../../"
 
   domain = var.domain
 
