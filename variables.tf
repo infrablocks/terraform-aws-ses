@@ -1,3 +1,8 @@
+variable "region" {
+  type        = string
+  description = "The region of the deployment (including any allowed account ids)."
+}
+
 variable "domain" {
   type        = string
   description = "The domain to create the SES identity for."
@@ -47,4 +52,18 @@ variable "mail_from_domain" {
     condition     = var.mail_from_domain != null ? can(regex("^[a-zA-Z0-9-]+$", var.mail_from_domain)) : true
     error_message = "If provided must be a valid subdomain."
   }
+}
+
+variable "allow_cross_account_lambda_send_email" {
+  type        = bool
+  description = "If true allows cross account lambdas to send emails from the account ids provided in `allowed_cross_account_lambda_send_email_account_ids`."
+  default     = false
+  nullable    = false
+}
+
+variable "allowed_cross_account_lambda_send_email_account_ids" {
+  type        = list(string)
+  description = "Account ids for cross account lambdas to allowing sending emails from."
+  default     = []
+  nullable    = false
 }

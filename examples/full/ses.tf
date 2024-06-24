@@ -1,6 +1,8 @@
 module "ses" {
   source = "../../"
 
+  region = var.region
+
   domain = var.domain
 
   zone_id = var.zone_id

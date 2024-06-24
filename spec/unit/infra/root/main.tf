@@ -9,6 +9,8 @@ data "terraform_remote_state" "prerequisites" {
 module "ses" {
   source = "../../../.."
 
+  region = var.region
+
   domain = var.domain
 
   zone_id = var.zone_id
@@ -22,6 +24,10 @@ module "ses" {
   use_custom_mail_from_domain = var.use_custom_mail_from_domain
 
   mail_from_domain = var.mail_from_domain
+
+  allow_cross_account_lambda_send_email = var.allow_cross_account_lambda_send_email
+
+  allowed_cross_account_lambda_send_email_account_ids = var.allowed_cross_account_lambda_send_email_account_ids
 
   providers = {
     aws = aws
