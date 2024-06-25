@@ -25,9 +25,9 @@ module "ses" {
 
   mail_from_domain = var.mail_from_domain
 
-  allow_cross_account_lambda_send_email = var.allow_cross_account_lambda_send_email
+  allow_cross_account_iam_send_email = var.allow_cross_account_iam_send_email
 
-  allowed_cross_account_lambda_send_email_account_ids = var.allowed_cross_account_lambda_send_email_account_ids
+  allowed_cross_account_iam_send_email_account_ids = var.allowed_cross_account_iam_send_email_account_ids
 
   providers = {
     aws = aws

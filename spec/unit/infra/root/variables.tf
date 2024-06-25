@@ -32,12 +32,12 @@ variable "mail_from_domain" {
   default = null
 }
 
-variable "allow_cross_account_lambda_send_email" {
+variable "allow_cross_account_iam_send_email" {
   type    = bool
   default = null
 }
 
-variable "allowed_cross_account_lambda_send_email_account_ids" {
+variable "allowed_cross_account_iam_send_email_account_ids" {
   type    = list(string)
   default = null
 }

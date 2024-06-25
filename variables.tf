@@ -54,16 +54,16 @@ variable "mail_from_domain" {
   }
 }
 
-variable "allow_cross_account_lambda_send_email" {
+variable "allow_cross_account_iam_send_email" {
   type        = bool
-  description = "If true allows cross account lambdas to send emails from the account ids provided in `allowed_cross_account_lambda_send_email_account_ids`."
+  description = "If true allows iam roles to send emails from the account ids provided in `allowed_cross_account_iam_send_email_account_ids`."
   default     = false
   nullable    = false
 }
 
-variable "allowed_cross_account_lambda_send_email_account_ids" {
+variable "allowed_cross_account_iam_send_email_account_ids" {
   type        = list(string)
-  description = "Account ids for cross account lambdas to allowing sending emails from."
+  description = "Account ids for cross account iam roles to allowing sending emails from."
   default     = []
   nullable    = false
 }
